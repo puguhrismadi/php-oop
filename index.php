@@ -5,23 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<?php include('mylib/warga.lib.php'); 
+<?php //include('mylib/warga.lib.php'); 
 include('mylib/myDb.php');
 
 ?>
 <body>
 <?php
-$warga1= new Warga();
-$warga1->setPerson();
-$warga1->person();
-//parsing variabel lokal
-echo "<hr>";
-$warga1->person3('Puguh','Bogor');
-
-
-
-
-//dump($data);
+$Db = new MyDb();
+$data_warga = $Db->show();
+//print_r($data_warga);
 ?>
 
 <table border=1>
@@ -33,16 +25,20 @@ $warga1->person3('Puguh','Bogor');
             <td>No HP</td>
             <td>Action</td>
         </tr>
-    <?php do{  ?>
+    <?php
+    $i=0;
+    foreach($data_warga as $data){ 
+        $i++;
+        ?>
         <tr>
-            <td><?php echo $data['id']; ?></td>
+            <td><?php echo $i; ?></td>
             <td><?php echo $data['no_ktp']; ?></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td><?php echo $data['nama_lengkap']; ?></td>
+            <td><?php echo $data['alamat_lengkap']; ?></td>
+            <td><?php echo $data['no_hp']; ?></td>
+            <td><a href="detail.php?id=<?php echo $data['id']; ?>">detail</a></td>
         </tr>
-    <?php }while($data = mysqli_fetch_array($baca)); ?>
+    <?php } ?>
     </table>
     
 </body>

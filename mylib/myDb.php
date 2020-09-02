@@ -6,6 +6,7 @@ Class MyDb {
         $dbname = "db_warga";
         $username = "root";
         $password = "";
+        //metode PDO
         $this->db = new PDO("mysql:host={$host};dbname={$dbname}", $username, $password);
     }
     public function show()
