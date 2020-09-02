@@ -16,6 +16,18 @@ Class MyDb {
         $data = $query->fetchAll();
         return $data;
     }
+    public function add_data($no_ktp,$nama_lengkap,$alamat_lengkap,$no_hp)
+    {
+        $data = $this->db->prepare('INSERT INTO data_warga (no_ktp,nama_lengkap,alamat_lengkap,no_hp) VALUES (?, ?, ?, ?)');
+        
+        $data->bindParam(1, $no_ktp);
+        $data->bindParam(2, $nama_lengkap);
+        $data->bindParam(3, $alamat_lengkap);
+        $data->bindParam(4, $no_hp);
+ 
+        $data->execute();
+        return $data->rowCount();
+    }
    
 
 }
