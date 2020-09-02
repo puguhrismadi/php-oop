@@ -3,47 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ford Registrasi Warga</title>
+    <title>Ford Detail Registrasi Warga</title>
 </head>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <body>
+<?php
+include('mylib/myDb.php');
+$Db=new myDb();
+$idwarga=$_GET['id'];
+$data=$Db->get_by_id($idwarga);
+//print_r($data);
+//echo "blalala";
+?>
     <div class="container">
    
     <div class="row">
         <div class="col-md-8">
-        <h2>Form Registrasi Warga</h2>
+        <h2>Form Detail Registrasi Warga</h2>
         <hr>
-        <form action="index.php" method="post">
-        <table class="table table-bordered">
+        <table class="table table-striped table-bordered">
             <tr>
-                <th colspan="2">Biodata Pribadi</th>
-                
+                <td>No ID</td>
+                <td><?php echo $data['id']; ?></td>
             </tr>
             <tr>
-                <td>Nomor KTP</td>
-                <td> <input class="form-group" type="text" name="no_ktp" id="no_ktp"></td>
+                <td>No KTP</td>
+                <td><?php echo $data['no_ktp']; ?></td>
             </tr>
             <tr>
                 <td>Nama Lengkap</td>
-                <td><input class="form-group" type="text" name="nama_lengkap" id="nama_lengkap"></td>
+                <td><?php echo $data['nama_lengkap']; ?></td>
             </tr>
             <tr>
                 <td>Alamat Lengkap</td>
-                <td> <input class="form-group" type="text" name="alamat_lengkap" id="alamat_lengkap"></td>
+                <td><?php echo $data['alamat_lengkap']; ?></td>
             </tr>
             <tr>
                 <td>Nomor HP</td>
-                <td><input class="form-group" type="text" name="no_hp" id="no_hp"></td>
+                <td><?php echo $data['no_hp']; ?></td>
             </tr>
             <tr>
-                <td colspan="2"> <button class="btn btn-success" name="daftar" type="submit">Daftar </button></td>
-                
+                <td><a href="index.php" class="btn btn-primary">Kembali</a></td>
+                <td></td>
             </tr>
         </table>
-      
-       
-        </form>
 
         </div>
     </div>

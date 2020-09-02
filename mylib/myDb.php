@@ -28,6 +28,21 @@ Class MyDb {
         $data->execute();
         return $data->rowCount();
     }
+    public function get_by_id($id_warga){
+        $query = $this->db->prepare("SELECT * FROM data_warga where id=?");
+        $query->bindParam(1, $id_warga);
+        $query->execute();
+        return $query->fetch();
+    }
+    public function delete($id_warga)
+    {
+        $query = $this->db->prepare("DELETE FROM data_warga where id=?");
+ 
+        $query->bindParam(1, $id_warga);
+ 
+        $query->execute();
+        return $query->rowCount();
+    }
    
 
 }
